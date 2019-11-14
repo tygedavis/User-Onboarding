@@ -41,6 +41,10 @@ h1, h2, h3, label{
   padding: 10px;
 }
 
+.check{
+  margin: 5px 0;
+}
+
 .agree{
   margin: 5px;
   padding: 2px;

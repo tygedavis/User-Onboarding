@@ -49,6 +49,15 @@ const UserForm = ({ errors, touched, value, status }) => {
                     />
                     {touched.password && errors.password && (<p>{errors.password}</p>)}
 
+                    <label/>         
+                    <Field
+                        className='field'
+                        name='confirmPassword'
+                        type='password'
+                        placeholder='Confirm Password'
+                    />
+                    {touched.password && errors.password && (<p>{errors.confirmPassword}</p>)}
+
                     <div className='check'>
                         <label className='agree'/>Agree to the Terms and Conditions
                         <Field
@@ -68,11 +77,12 @@ const UserForm = ({ errors, touched, value, status }) => {
 
 //With Formik----------------------------------------------
 const FormikUserForm = withFormik({
-    mapPropsToValues({ name, email, password, agree }) {
+    mapPropsToValues({ name, email, password, confirmPassword, agree }) {
         return {
             name: name || '',
             email: email || '',
             password: password || '',
+            confirmPassword: confirmPassword||'',
             agree: agree || false
         };
     },
@@ -84,6 +94,11 @@ const FormikUserForm = withFormik({
             .required('This is a required field'),
         password: Yup.string()
             .required('This is a required field'),
+        confirmPassword: Yup.string()
+            .required('Confirm Password')
+            .test('passwords-match', 'Passwords must match', function(value) {
+                return this.parent.password === value;
+            }),
         agree: Yup.boolean()
             .oneOf([true], 'You must accept the Terms and Conditions')
     }),
