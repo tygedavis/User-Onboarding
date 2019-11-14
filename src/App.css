@@ -70,3 +70,7 @@ button{
 .userInfo > h2{
   border-bottom: 1px solid black;
 }
+
+.password{
+  -webkit-text-security: circle;
+}
