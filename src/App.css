@@ -49,4 +49,12 @@ h1, label{
 
 button{
   margin: 10px 0;
+  padding: 12px;
+  background-color: skyblue;
+  border: 1px solid rgb(56, 180, 230);
+  border-radius: 5px;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  cursor: pointer;
 }

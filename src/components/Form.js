@@ -18,7 +18,7 @@ const UserForm = ({ errors, touched, value, status }) => {
 
     return(
         <div className='formDiv'>
-            <h1>User Onboarding</h1>
+            <h1>Sign-Up</h1>
 
             <Form className='form'>
                 <label/>Name
