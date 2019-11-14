@@ -39,9 +39,12 @@ const UserForm = () => {
 }
 
 const FormikUserForm = withFormik({
-    mapPropsToValues({ name }) {
+    mapPropsToValues({ name, email, password, agree }) {
         return {
-            name: name|| ''
+            name: name || '',
+            email: email || '',
+            password: password || '',
+            agree: agree || false
         };
     },
 })(UserForm)
