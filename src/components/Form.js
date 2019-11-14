@@ -1,11 +1,12 @@
 //Imports----------------------------------------------------
 import React from 'react';
-import { withFormik, Form, Field, yupToFormErrors } from 'formik';
+import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios'
 
 
 //UserForm Component-----------------------------------------
-const UserForm = ({ errors, touched }) => {
+const UserForm = ({ errors, touched, value, status }) => {
     return(
         <div className='formDiv'>
             <Form>
@@ -56,6 +57,7 @@ const FormikUserForm = withFormik({
             agree: agree || false
         };
     },
+    //Validation ------------------------------------------------------
     validationSchema: Yup.object().shape({
         name: Yup.string()
             .required('This is a required field'),
@@ -65,7 +67,17 @@ const FormikUserForm = withFormik({
             .required('This is a required field'),
         agree: Yup.boolean()
             .oneOf([true], 'You must accept the Terms and Conditions')
-    })
+    }),
+
+    //Axios POST call --------------------------------------------------
+    handleSubmit(values, {setStatus}) {
+        axios.post('https://reqres.in/api/users/', values)
+        .then(res => {
+          setStatus(res.data);
+          console.log(res)
+        })
+        .catch(err => console.log(err.response))
+      }
 })(UserForm)
 
 export default FormikUserForm;
