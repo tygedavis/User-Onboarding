@@ -17,58 +17,52 @@ const UserForm = ({ errors, touched, value, status }) => {
     }, [status])
 
     return(
-        <div className='formDiv'>
-            <h1>Sign-Up</h1>
+        <>
+            <div className='formDiv'>
+                <h1>Sign-Up</h1>
 
-            <Form className='form'>
-                <label/>Name
-                <Field
-                    className='field'
-                    name='name'
-                    type='text'
-                    placeholder='Name'
-                />
-                {touched.name && errors.name && (<p>{errors.name}</p>)}
-
-                <label/>Email
-                <Field
-                    className='field'
-                    name='email'
-                    type='email'
-                    placeholder='Email'
-                />
-                {touched.email && errors.email && (<p>{errors.email}</p>)}
-
-                <label/>Password         
-                <Field
-                    className='field'
-                    name='password'
-                    type='password'
-                    placeholder='Password'
-                />
-                {touched.password && errors.password && (<p>{errors.password}</p>)}
-
-                <div className='check'>
-                    <label className='agree'/>Agree to the Terms and Conditions
+                <Form className='form'>
+                    <label/>Name
                     <Field
-                        name='agree'
-                        type='checkbox'
+                        className='field'
+                        name='name'
+                        type='text'
+                        placeholder='Name'
                     />
-                    {touched.agree && errors.agree && (<p>{errors.agree}</p>)}
-                </div>
+                    {touched.name && errors.name && (<p>{errors.name}</p>)}
 
-                <button type='submit'>Submit</button>
-            </Form>
-            {user.map(users => (
-                console.log(users),
-                <ul key={users.id}>
-                    <li>Name: {users.name}</li>
-                    <li>Email: {users.email}</li>
-                    </ul>
-            ))}
+                    <label/>Email
+                    <Field
+                        className='field'
+                        name='email'
+                        type='email'
+                        placeholder='Email'
+                    />
+                    {touched.email && errors.email && (<p>{errors.email}</p>)}
 
-            <UserCard status={status}/>
-        </div>
+                    <label/>Password         
+                    <Field
+                        className='field'
+                        name='password'
+                        type='password'
+                        placeholder='Password'
+                    />
+                    {touched.password && errors.password && (<p>{errors.password}</p>)}
+
+                    <div className='check'>
+                        <label className='agree'/>Agree to the Terms and Conditions
+                        <Field
+                            name='agree'
+                            type='checkbox'
+                        />
+                        {touched.agree && errors.agree && (<p>{errors.agree}</p>)}
+                    </div>
+
+                    <button type='submit'>Submit</button>
+                </Form>
+            </div>
+            <UserCard user={user}/>
+        </>
     )
 }
 
