@@ -56,7 +56,7 @@ const UserForm = ({ errors, touched, value, status }) => {
                         type='password'
                         placeholder='Confirm Password'
                     />
-                    {touched.password && errors.password && (<p>{errors.confirmPassword}</p>)}
+                    {touched.confirmpassword && errors.confirmpassword && (<p>{errors.confirmPassword}</p>)}
 
                     <div className='check'>
                         <label className='agree'/>Agree to the Terms and Conditions
@@ -95,10 +95,7 @@ const FormikUserForm = withFormik({
         password: Yup.string()
             .required('This is a required field'),
         confirmPassword: Yup.string()
-            .required('Confirm Password')
-            .test('passwords-match', 'Passwords must match', function(value) {
-                return this.parent.password === value;
-            }),
+            .oneOf([Yup.ref('password'), null], 'Passwords must match'),
         agree: Yup.boolean()
             .oneOf([true], 'You must accept the Terms and Conditions')
     }),
